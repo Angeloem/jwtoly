@@ -69,7 +69,7 @@ class LoginSerializer(serializers.Serializer):
         """
         print(data, 'printed in serializer')
         username = data.get('username', None)
-        email = 'lukie@lightjema.com'# data.get('email', 'lukie@lightjema.com')
+        email = data.get('email', 'lukie@lightjema.com')
         password = data.get('password', None)
 
         if email is None:
