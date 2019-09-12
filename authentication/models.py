@@ -135,9 +135,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         iat = timezone.now()
         token = jwt.encode(
             {
-                "iat": int(iat.strftime("%s")),
+                "iat": int(iat.strftime('%S')),
                 "id": self.pk,
-                "exp": int(exp.strftime("%s")),
+                "exp": int(exp.strftime("%S")),
             },
             settings.SECRET_KEY,
             algorithm="HS256",
