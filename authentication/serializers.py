@@ -41,6 +41,7 @@ class RegistrationSerializer(serializers.Serializer):
         ])
 
     def validate(self, data):
+        print(data, 'printed in serializer')
         password = data.get('password', None)
         if password is not None:
             validate_password(password)
@@ -66,7 +67,9 @@ class LoginSerializer(serializers.Serializer):
         """
         Validates user data.
         """
-        email = data.get('email', None)
+        print(data, 'printed in serializer')
+        username = data.get('username', None)
+        email = 'lukie@lightjema.com'# data.get('email', 'lukie@lightjema.com')
         password = data.get('password', None)
 
         if email is None:
@@ -77,7 +80,7 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 'A password is required to log in.')
 
-        user = authenticate(username=email, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is None:
             raise serializers.ValidationError(

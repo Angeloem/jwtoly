@@ -11,12 +11,14 @@ class UserViewSet(viewsets.ViewSet):
     The `auth` endpoint allows only specific actions including login, registration, etc.
     """
 
-    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
+    @action(detail=False , methods=['post'], permission_classes=[AllowAny])
     def login(self, request):
         """
         Login existing `User`.
         """
-        serializer = LoginSerializer(data=request.data)
+        printed = request.data
+        print(printed)
+        serializer = LoginSerializer(data=printed)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
